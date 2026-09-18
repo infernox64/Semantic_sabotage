@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Sabotage // Diagnostic Terminal</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --panel-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --warning-color: #f85149;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .terminal-card {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            max-width: 650px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .header {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .output-box {
+            background-color: #010409;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--warning-color);
+            padding: 16px;
+            min-height: 80px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            word-break: break-word;
+            display: flex;
+            align-items: center;
+        }
+
+        button {
+            background-color: #238636;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ea043;
+        }
+
+        button:active {
+            background-color: #1a6327;
+        }
+    </style>
+</head>
+<body>
+
+<div class="terminal-card">
+    <div class="header">System Diagnostics // Semantic Engine v2.4</div>
+    <div class="output-box" id="terminal-output">Press button to initialize telemetry readout...</div>
+    <button onclick="generateSabotage()">GENERATE TELEMETRY READOUT</button>
+</div>
+
+<script>
+const POOLS = {
+    scalar: ["42.8", "0.0073", "104.5", "12.6", "-4.0", "891.2"],
+    prefix: ["milli", "kilo", "pico", "giga", "peta", "micro", "nano"],
+    nonsense_unit: ["spatulas", "flanges", "turnips", "biscuits", "credenzas", "chevrons"],
+    rate_vector: ["per square ohm", "per cubic furlong", "at angular velocity", "per kelvin-second", "transverse to ground"],
+    component: ["the primary flywheel", "the step-down transformer", "the busbar topology", "the grounding strap", "the relay contacts"],
+    failure_state: ["exceeds structural impedance", "induces parasitic capacitance", "experiences thermal runaway", "decouples from physical space"],
+    mitigation: ["re-torquing the manifold", "back-biasing the cathode", "purging the hydraulic reservoir", "applying dampening paste"]
+};
+
+const TEMPLATES = [
+    "WARNING: If {component} output reaches {scalar} {prefix}{nonsense_unit} {rate_vector}, the system {failure_state}.",
+    "Calibrate {component} to within {scalar} {prefix}{nonsense_unit} before {mitigation}.",
+    "Measured baseline drift: {scalar} {prefix}{nonsense_unit} {rate_vector} across {component}.",
+    "CRITICAL: {component} must not exceed {scalar} {prefix}{nonsense_unit} during routine {mitigation}."
+];
+
+function getRandomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function generateSabotage() {
+    const template = getRandomElement(TEMPLATES);
+    
+    const result = template
+        .replace("{scalar}", getRandomElement(POOLS.scalar))
+        .replace("{prefix}", getRandomElement(POOLS.prefix))
+        .replace("{nonsense_unit}", getRandomElement(POOLS.nonsense_unit))
+        .replace("{rate_vector}", getRandomElement(POOLS.rate_vector))
+        .replace("{component}", getRandomElement(POOLS.component))
+        .replace("{failure_state}", getRandomElement(POOLS.failure_state))
+        .replace("{mitigation}", getRandomElement(POOLS.mitigation));
+
+    document.getElementById("terminal-output").innerText = result;
+}
+</script>
+
+</body>
+</html>
