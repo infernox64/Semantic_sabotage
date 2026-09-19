@@ -92,43 +92,6 @@
     <button onclick="generateSabotage()">GENERATE TELEMETRY READOUT</button>
 </div>
 
-<script>
-const POOLS = {
-    scalar: ["42.8", "0.0073", "104.5", "12.6", "-4.0", "891.2"],
-    prefix: ["milli", "kilo", "pico", "giga", "peta", "micro", "nano"],
-    nonsense_unit: ["spatulas", "flanges", "turnips", "biscuits", "credenzas", "chevrons"],
-    rate_vector: ["per square ohm", "per cubic furlong", "at angular velocity", "per kelvin-second", "transverse to ground"],
-    component: ["the primary flywheel", "the step-down transformer", "the busbar topology", "the grounding strap", "the relay contacts"],
-    failure_state: ["exceeds structural impedance", "induces parasitic capacitance", "experiences thermal runaway", "decouples from physical space"],
-    mitigation: ["re-torquing the manifold", "back-biasing the cathode", "purging the hydraulic reservoir", "applying dampening paste"]
-};
-
-const TEMPLATES = [
-    "WARNING: If {component} output reaches {scalar} {prefix}{nonsense_unit} {rate_vector}, the system {failure_state}.",
-    "Calibrate {component} to within {scalar} {prefix}{nonsense_unit} before {mitigation}.",
-    "Measured baseline drift: {scalar} {prefix}{nonsense_unit} {rate_vector} across {component}.",
-    "CRITICAL: {component} must not exceed {scalar} {prefix}{nonsense_unit} during routine {mitigation}."
-];
-
-function getRandomElement(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function generateSabotage() {
-    const template = getRandomElement(TEMPLATES);
-    
-    const result = template
-        .replace("{scalar}", getRandomElement(POOLS.scalar))
-        .replace("{prefix}", getRandomElement(POOLS.prefix))
-        .replace("{nonsense_unit}", getRandomElement(POOLS.nonsense_unit))
-        .replace("{rate_vector}", getRandomElement(POOLS.rate_vector))
-        .replace("{component}", getRandomElement(POOLS.component))
-        .replace("{failure_state}", getRandomElement(POOLS.failure_state))
-        .replace("{mitigation}", getRandomElement(POOLS.mitigation));
-
-    document.getElementById("terminal-output").innerText = result;
-}
-</script>
-
+<script src="main.js"></script>
 </body>
 </html>
